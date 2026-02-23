@@ -1,0 +1,60 @@
+{ config, pkgs, ... }:
+
+{
+  home.username = "jamalalkharrat";
+  home.homeDirectory = "/Users/jamalalkharrat";
+
+  # Required: do not change unless you know why
+  home.stateVersion = "25.05";
+
+  # Packages installed in your user profile
+  home.packages = with pkgs; [
+    curl
+    wget
+    vim
+    htop
+  ];
+
+  # Enable Home Manager
+  programs.home-manager.enable = true;
+
+  # Git configuration
+  programs.git = {
+  enable = true;
+  userName = "Jamal Alkharrat";
+  userEmail = "jamal.alkharrat@gmail.com";
+};
+
+
+  # Zsh configuration
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+
+  # Starship prompt
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.bun = {
+    enable = true;
+  };
+
+  # Direnv for per-project environments
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  # Let Home Manager manage itself
+  targets.darwin.defaults = {};
+
+  programs.nh = {
+    enable = true;
+    flake = "/Users/jamalalkharrat/nix-config";
+  };
+}
