@@ -44,6 +44,10 @@
     enable = true;
   };
 
+  programs.neovim = {
+    enable = true;
+  };
+
   # Direnv for per-project environments
   programs.direnv = {
     enable = true;
