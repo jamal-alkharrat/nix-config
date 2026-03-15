@@ -9,6 +9,7 @@
 
   # Packages installed in your user profile
   home.packages = with pkgs; [
+    ripgrep
     curl
     wget
     vim
@@ -25,6 +26,33 @@
   userEmail = "jamal.alkharrat@gmail.com";
 };
 
+programs.lazygit = {
+    enable = true;
+  };
+
+programs.fd = {
+  enable = true;
+  ignores = [
+    "Library/"
+    "Pictures/"
+    "Downloads/"
+    ".git/"
+    "node_modules/"
+    "venv/"
+    "__pycache__/"
+    ".cache/"
+    "build/"
+    "dist/"
+    ".DS_Store"
+    "*.log"
+    "*.pyc"
+  ];
+};
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;   # or enableBashIntegration = true;
+  };
 
   # Zsh configuration
   programs.zsh = {
