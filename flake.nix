@@ -12,13 +12,19 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
   let
     configuration = { pkgs, ... }: {
+
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
         [ vim home-manager
         ];
 
-
+      homebrew = {
+          enable = true;
+          #casks = [ "utm" ]; # GUI Apps
+          #brews = [ "virt-viewer"]; # CLI Tools
+          user = "jamalalkharrat";
+        };
 
       nixpkgs.config = {
         allowUnfree = true;
