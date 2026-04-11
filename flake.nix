@@ -16,7 +16,8 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
-        [ vim home-manager
+        [ vim 
+        home-manager
         ];
 
       homebrew = {
@@ -29,7 +30,7 @@
           casks = [ 
             "hyperkey"
             "linearmouse"
-            "typewhisper/tap/typewhisper"
+            "typewhisper"
             "dockdoor"
             "shottr"
             "middleclick"
@@ -39,6 +40,9 @@
           ]; # GUI Apps
           #brews = [ 
           #]; # CLI Tools
+          taps = [
+            "typewhisper/tap"
+          ];
           user = "jamalalkharrat";
         };
 
@@ -73,17 +77,28 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#mac
-    darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
-      modules = [ 
-        configuration
-       ];
-    };
-    homeConfigurations."jamalalkharrat" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-      extraSpecialArgs = { inherit inputs; };
-      modules = [ 
-        ./home.nix
-       ];
-    };
+  darwinConfigurations.mac = nix-darwin.lib.darwinSystem {
+  system = "aarch64-darwin";
+
+  modules = [
+    home-manager.darwinModules.home-manager
+
+    {
+      system.stateVersion = 6;
+
+
+      users.users.jamalalkharrat = {
+        home = "/Users/jamalalkharrat";
+      };
+
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = { inherit inputs; };
+        users.jamalalkharrat.imports = [ ./home.nix ];
+      };
+    }
+  ];
+};
   };
 }

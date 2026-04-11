@@ -22,9 +22,11 @@
   # Git configuration
   programs.git = {
   enable = true;
-  userName = "Jamal Alkharrat";
-  userEmail = "jamal.alkharrat@gmail.com";
-};
+  #settings = {
+   #   userName = "Jamal Alkharrat";
+    #  userEmail = "jamal.alkharrat@gmail.com";
+   # };
+  };
 
 programs.lazygit = {
     enable = true;
@@ -93,13 +95,13 @@ programs.fd = {
   programs.pyenv = {
     enable = true;
     enableZshIntegration = true;
-    rootDirectory = "\${config.xdg.dataHome}/.pyenv";
+    rootDirectory = "${config.xdg.dataHome}/.pyenv";
   };
 
-  programs.opencode = {
-    enable = true;
-    enableMcpIntegration = true;
-  };
+  #programs.opencode = {
+   # enable = true;
+    #enableMcpIntegration = true;
+  #};
 
   programs.ghostty = {
     enable = true;
