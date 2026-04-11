@@ -23,8 +23,8 @@
   programs.git = {
   enable = true;
   #settings = {
-   #   userName = "Jamal Alkharrat";
-    #  userEmail = "jamal.alkharrat@gmail.com";
+  userName = "Jamal Alkharrat";
+  userEmail = "jamal.alkharrat@gmail.com";
    # };
   };
 
@@ -96,15 +96,5 @@ programs.fd = {
     enable = true;
     enableZshIntegration = true;
     rootDirectory = "${config.xdg.dataHome}/.pyenv";
-  };
-
-  #programs.opencode = {
-   # enable = true;
-    #enableMcpIntegration = true;
-  #};
-
-  programs.ghostty = {
-    enable = true;
-    enableZshIntegration = true;
   };
 }

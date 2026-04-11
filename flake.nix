@@ -37,6 +37,8 @@
             "mos"
             "notion"
             "telegram"
+            "ghostty"
+            "opencode"
           ]; # GUI Apps
           #brews = [ 
           #]; # CLI Tools
