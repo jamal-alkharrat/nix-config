@@ -27,6 +27,7 @@
             "typewhisper/tap/typewhisper"
             "dockdoor"
             "shottr"
+            "middleclick"
           ]; # GUI Apps
           #brews = [ "virt-viewer"]; # CLI Tools
           user = "jamalalkharrat";
