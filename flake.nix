@@ -21,7 +21,7 @@
 
       homebrew = {
           enable = true;
-          #casks = [ "utm" ]; # GUI Apps
+          casks = [ "hyperkey", "linearmouse", "typewhisper/tap/typewhisper", "dockdoor", "shottr" ]; # GUI Apps
           #brews = [ "virt-viewer"]; # CLI Tools
           user = "jamalalkharrat";
         };
