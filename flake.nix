@@ -21,6 +21,11 @@
 
       homebrew = {
           enable = true;
+          onActivation = {
+            autoUpdate = true;
+            upgrade = true;
+            ckeabup = "zap";
+          };
           casks = [ 
             "hyperkey"
             "linearmouse"
