@@ -24,7 +24,7 @@
           onActivation = {
             autoUpdate = true;
             upgrade = true;
-            ckeabup = "zap";
+            cleanup = "zap";
           };
           casks = [ 
             "hyperkey"
