@@ -55,6 +55,10 @@
 
       # Enable Touch ID support for sudo.
       security.pam.services.sudo_local.touchIdAuth = true;
+
+      nix.gc = {
+        automatic = true;
+      }
     };
   in
   {
