@@ -22,7 +22,7 @@
       homebrew = {
           enable = true;
           casks = [ 
-            "hyperkey"
+            "superkey"
             "linearmouse"
             "typewhisper/tap/typewhisper"
             "dockdoor"
