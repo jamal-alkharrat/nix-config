@@ -58,7 +58,7 @@
 
       nix.gc = {
         automatic = true;
-      }
+      };
     };
   in
   {
