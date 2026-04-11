@@ -89,4 +89,20 @@ programs.fd = {
     enable = true;
     flake = "/Users/jamalalkharrat/nix-config";
   };
+
+  programs.pyenv = {
+    enable = true;
+    enableZshIntegration = true;
+    rootDirectory = "\${config.xdg.dataHome}/.pyenv";
+  };
+
+  programs.opencode = {
+    enable = true;
+    enableMcpIntegration = true;
+  };
+
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }

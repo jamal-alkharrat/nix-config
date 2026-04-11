@@ -33,8 +33,12 @@
             "dockdoor"
             "shottr"
             "middleclick"
+            "mos"
+            "notion"
+            "telegram"
           ]; # GUI Apps
-          #brews = [ "virt-viewer"]; # CLI Tools
+          #brews = [ 
+          #]; # CLI Tools
           user = "jamalalkharrat";
         };
 
