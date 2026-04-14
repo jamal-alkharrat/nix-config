@@ -6,7 +6,6 @@
   environment.systemPackages = with pkgs; [
     home-manager
   ];
-
   homebrew = {
     enable = true;
     onActivation = {
@@ -43,9 +42,6 @@
   # Enable alternative shell support in nix-darwin.
   # programs.fish.enable = true;
 
-  # Set Git commit hash for darwin-version.
-  system.configurationRevision = self.rev or self.dirtyRev or null;
-
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 6;
@@ -59,6 +55,8 @@
   nix.gc = {
     automatic = true;
   };
+
+  nix.package = pkgs.lixPackageSets.stable.lix;
 
   users.users.jamalalkharrat = {
     name = "jamalalkharrat";

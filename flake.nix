@@ -23,7 +23,7 @@
       darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ./darwin-config.nix
+          ./darwin/darwin-config.nix
           inputs.home-manager.darwinModules.home-manager
         ];
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
