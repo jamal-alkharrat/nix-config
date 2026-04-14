@@ -28,14 +28,17 @@ in
     casks = [
       "hyperkey"
       "linearmouse"
+      "raycast"
       "typewhisper/tap/typewhisper"
       "ghostty"
       "dockdoor"
       "shottr"
       "middleclick"
       "mos"
+      "steam"
       "notion"
       "telegram"
+      "whatsapp"
     ]; # GUI Apps
     #brews = [
     #]; # CLI Tools
