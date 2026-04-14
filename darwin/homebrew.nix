@@ -20,10 +20,13 @@
       "notion"
       "telegram"
       "whatsapp"
+      "tailscale-app"
+      "twingate"
+      "rectangle"
+      "visual-studio-code"
     ]; # GUI Apps
-    brews = [
-      "tailscale"
-    ]; # CLI Tools
+    # brews = [
+    # ]; # CLI Tools
     #taps = [
     #];
     user = "jamalalkharrat";
