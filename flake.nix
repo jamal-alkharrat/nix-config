@@ -1,23 +1,24 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "MacOS configuration using nix-darwin and home-manager";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, ... }:
+  outputs = inputs@{   self, nix-darwin, nixpkgs, home-manager, ... }:
   let
-    configuration = { pkgs, ... }: {
+    configuration = { pkgs, config, ... }: {
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
-        [ vim 
-        home-manager
+        [ 
+          vim 
+          home-manager
         ];
 
       homebrew = {
@@ -30,21 +31,21 @@
           casks = [ 
             "hyperkey"
             "linearmouse"
-            "typewhisper"
+            # "typewhisper"
+            "ghostty"
             "dockdoor"
             "shottr"
             "middleclick"
             "mos"
             "notion"
             "telegram"
-            "ghostty"
-            "opencode"
+            #"opencode"
           ]; # GUI Apps
           #brews = [ 
           #]; # CLI Tools
-          taps = [
-            "typewhisper/tap"
-          ];
+          #taps = [
+          #  "typewhisper/tap"
+          #];
           user = "jamalalkharrat";
         };
 
@@ -74,33 +75,26 @@
       nix.gc = {
         automatic = true;
       };
+
+      users.users.jamalalkharrat = {
+        name = "jamalalkharrat";
+        home = "/Users/jamalalkharrat";
+      };
+
+      home-manager.users.jamalalkharrat = { pkgs, config, ... }: {
+        imports = [ ./home.nix ];
+      };
     };
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#mac
-  darwinConfigurations.mac = nix-darwin.lib.darwinSystem {
-  system = "aarch64-darwin";
-
-  modules = [
-    home-manager.darwinModules.home-manager
-
-    {
-      system.stateVersion = 6;
-
-
-      users.users.jamalalkharrat = {
-        home = "/Users/jamalalkharrat";
-      };
-
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = { inherit inputs; };
-        users.jamalalkharrat.imports = [ ./home.nix ];
-      };
-    }
-  ];
-};
+    darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
+      modules = [ 
+        configuration
+        inputs.home-manager.darwinModules.home-manager
+       ];
+      pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+    };
   };
 }

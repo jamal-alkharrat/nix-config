@@ -22,10 +22,10 @@
   # Git configuration
   programs.git = {
   enable = true;
-  #settings = {
-  userName = "Jamal Alkharrat";
-  userEmail = "jamal.alkharrat@gmail.com";
-   # };
+  settings = {
+    user.name = "Jamal Alkharrat";
+    user.email = "jamal.alkharrat@gmail.com";
+   };
   };
 
 programs.lazygit = {
@@ -78,12 +78,6 @@ programs.fd = {
     enable = true;
   };
 
-  # Direnv for per-project environments
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
   # Let Home Manager manage itself
   targets.darwin.defaults = {};
 
@@ -96,5 +90,10 @@ programs.fd = {
     enable = true;
     enableZshIntegration = true;
     rootDirectory = "${config.xdg.dataHome}/.pyenv";
+  };
+
+  programs.ghostty = {
+    enable = true;
+    package = null;
   };
 }
