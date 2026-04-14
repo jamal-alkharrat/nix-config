@@ -14,6 +14,7 @@
     wget
     vim
     htop
+    opencode
   ];
 
   # Enable Home Manager

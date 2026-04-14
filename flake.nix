@@ -11,13 +11,12 @@
 
   outputs = inputs@{   self, nix-darwin, nixpkgs, home-manager, ... }:
   let
-    configuration = { pkgs, config, ... }: {
+    configuration = { pkgs, ... }: {
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs;
         [ 
-          vim 
           home-manager
         ];
 
@@ -31,7 +30,7 @@
           casks = [ 
             "hyperkey"
             "linearmouse"
-            # "typewhisper"
+            "typewhisper/tap/typewhisper"
             "ghostty"
             "dockdoor"
             "shottr"
@@ -39,12 +38,10 @@
             "mos"
             "notion"
             "telegram"
-            #"opencode"
           ]; # GUI Apps
           #brews = [ 
           #]; # CLI Tools
           #taps = [
-          #  "typewhisper/tap"
           #];
           user = "jamalalkharrat";
         };
@@ -81,7 +78,7 @@
         home = "/Users/jamalalkharrat";
       };
 
-      home-manager.users.jamalalkharrat = { pkgs, config, ... }: {
+      home-manager.users.jamalalkharrat = { pkgs, ... }: {
         imports = [ ./home.nix ];
       };
     };
