@@ -82,6 +82,10 @@ programs.fd = {
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    initContent = ''
+      bindkey 'ˆI' autosuggest-accept
+      bindkey -M viins 'ˆI' autosuggest-accept
+      '';
   };
 
   # Starship prompt
