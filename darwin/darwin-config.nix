@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./system-defaults.nix
+    ./homebrew.nix
   ];
 
   system.primaryUser = username;
@@ -18,34 +19,7 @@ in
   environment.systemPackages = with pkgs; [
     home-manager
   ];
-  homebrew = {
-    enable = true;
-    onActivation = {
-      autoUpdate = true;
-      upgrade = true;
-      cleanup = "zap";
-    };
-    casks = [
-      "hyperkey"
-      "linearmouse"
-      "raycast"
-      "typewhisper/tap/typewhisper"
-      "ghostty"
-      "dockdoor"
-      "shottr"
-      "middleclick"
-      "mos"
-      "steam"
-      "notion"
-      "telegram"
-      "whatsapp"
-    ]; # GUI Apps
-    #brews = [
-    #]; # CLI Tools
-    #taps = [
-    #];
-    user = username;
-  };
+  
 
   nixpkgs.config = {
     allowUnfree = true;
