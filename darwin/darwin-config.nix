@@ -1,7 +1,16 @@
 { pkgs, ... }:
+let
+  username = "jamalalkharrat";
+in
 {
   imports = [
     ./system-defaults.nix
+  ];
+
+  system.primaryUser = username;
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
   ];
 
   # List packages installed in system profile. To search by name, run:
@@ -32,7 +41,7 @@
     #]; # CLI Tools
     #taps = [
     #];
-    user = "jamalalkharrat";
+    user = username;
   };
 
   nixpkgs.config = {
@@ -61,14 +70,14 @@
 
   nix.package = pkgs.lixPackageSets.stable.lix;
 
-  users.users.jamalalkharrat = {
-    name = "jamalalkharrat";
-    home = "/Users/jamalalkharrat";
+  users.users.${username} = {
+    name = username;
+    home = "/Users/${username}";
   };
 
-  home-manager.users.jamalalkharrat =
+  home-manager.users.${username} =
     { pkgs, ... }:
     {
-      imports = [ ./home.nix ];
+      imports = [ ../home.nix ];
     };
 }
