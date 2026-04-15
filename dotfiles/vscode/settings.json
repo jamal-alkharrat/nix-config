@@ -1,0 +1,170 @@
+{
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "typescriptreact": true,
+  },
+  "git.autofetch": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+  },
+  "git.confirmSync": false,
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar",
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "explorer.confirmDelete": false,
+  "tailwind-fold.autoFold": false,
+  "editor.minimap.enabled": false,
+  "files.associations": {
+    "*.html": "html",
+  },
+  "svelte.enable-ts-plugin": true,
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off",
+  },
+  "workbench.editorAssociations": {
+    "*.copilotmd": "vscode.markdown.preview.editor",
+    "*.pdf": "latex-workshop-pdf-hook",
+  },
+  "explorer.confirmDragAndDrop": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "markdown-preview-enhanced.previewTheme": "atom-light.css",
+  "explorer.confirmPasteNative": false,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "projectManager.git.baseFolders": ["/Users/jamalalkharrat/Code"],
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+  "chat.mcp.gallery.enabled": true,
+  "chat.mcp.serverSampling": {
+    "Global in Code: upstash/context7": {
+      "allowedModels": [
+        "copilot/gpt-5-mini",
+        "copilot/auto",
+        "copilot/claude-haiku-4.5",
+        "copilot/claude-3.5-sonnet",
+        "copilot/claude-3.7-sonnet",
+        "copilot/claude-3.7-sonnet-thought",
+        "copilot/claude-sonnet-4",
+        "copilot/claude-sonnet-4.5",
+        "copilot/gemini-2.0-flash-001",
+        "copilot/gemini-2.5-pro",
+        "copilot/gpt-4.1",
+        "copilot/gpt-4o",
+        "copilot/gpt-5",
+        "copilot/gpt-5-codex",
+        "copilot/grok-code-fast-1",
+        "copilot/o3-mini",
+        "copilot/o4-mini",
+      ],
+    },
+  },
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "notebook.lineNumbers": "on",
+
+  // VIM
+  "vim.leader": "<Space>",
+  "vim.hlsearch": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // NAVIGATION
+    // switch b/w buffers
+    { "before": ["<S-h>"], "commands": [":bprevious"] },
+    { "before": ["<S-l>"], "commands": [":bnext"] },
+
+    // splits
+    { "before": ["leader", "v"], "commands": [":vsplit"] },
+    { "before": ["leader", "s"], "commands": [":split"] },
+
+    // panes
+    {
+      "before": ["leader", "h"],
+      "commands": ["workbench.action.focusLeftGroup"],
+    },
+    {
+      "before": ["leader", "j"],
+      "commands": ["workbench.action.focusBelowGroup"],
+    },
+    {
+      "before": ["leader", "k"],
+      "commands": ["workbench.action.focusAboveGroup"],
+    },
+    {
+      "before": ["leader", "l"],
+      "commands": ["workbench.action.focusRightGroup"],
+    },
+    // NICE TO HAVE
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"],
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"],
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"],
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["editor.action.showDefinitionPreviewHover"],
+    },
+  ],
+  "vim.visualModeKeyBindings": [
+    // Stay in visual mode while indenting
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    // Move selected lines while staying in visual mode
+    { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
+    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
+  ],
+  "editor.accessibilitySupport": "off",
+  "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+  "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+  },
+  "workbench.secondarySideBar.defaultVisibility": "visible",
+  "chat.viewSessions.enabled": false,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1,
+  },
+  "cSpell.language": "en,de,de-DE",
+  "cSpell.userWords": ["Reinraum"],
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.activityBar.location": "top",
+  "chat.tools.urls.autoApprove": {
+    "https://code.visualstudio.com": true,
+    "https://github.com/microsoft/vscode/wiki/*": true,
+    "https://nix.dev": {
+      "approveRequest": false,
+      "approveResponse": true,
+    },
+  },
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide",
+  },
+  "nix.formatterPath": "nixfmt",
+}

@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
-
+let username = "jamalalkharrat";
+in 
 {
-  home.username = "jamalalkharrat";
-  home.homeDirectory = "/Users/jamalalkharrat";
+  home.username = username;
+  home.homeDirectory = "/Users/${username}";
 
   # Required: do not change unless you know why
   home.stateVersion = "25.05";
@@ -34,7 +35,9 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
 
-    ".config/karabiner/karabiner.json".source = ./dotfiles/.config/karabiner/karabiner.json;
+    ".config/karabiner/karabiner.json".source = ./dotfiles/karabiner/karabiner.json;
+    "/Users/${username}/Library/Application Support/Code/User/settings.json".source = ./dotfiles/vscode/settings.json;
+    "/Users/${username}/Library/Application Support/Code/User/keybindings.json".source = ./dotfiles/vscode/keybindings.json;
   };
 
   # Let Home Manager install and manage itself.
@@ -108,7 +111,7 @@
 
   programs.nh = {
     enable = true;
-    flake = "/Users/jamalalkharrat/nix-config";
+    flake = "/Users/${username}/nix-config";
   };
 
   programs.pyenv = {

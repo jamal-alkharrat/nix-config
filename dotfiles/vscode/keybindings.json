@@ -1,0 +1,254 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "cmd+[Backslash]",
+    "command": "editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly",
+  },
+  // MULTI-COURSOR
+  {
+    "key": "alt+cmd+up",
+    "command": "-editor.action.insertCursorAbove",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "alt+cmd+down",
+    "command": "-editor.action.insertCursorBelow",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "shift+ctrl+up",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "shift+ctrl+down",
+    "command": "editor.action.insertCursorBelow",
+    "when": "editorTextFocus",
+  },
+  // TERMINAL NAVIGATION
+  {
+    "key": "shift+cmd+l",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus",
+  },
+  {
+    "key": "shift+cmd+h",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus",
+  },
+  {
+    "key": "shift+cmd+o",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalFocus",
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus",
+  },
+  // SCROLLING
+  {
+    "key": "alt+down",
+    "command": "cursorMove",
+    "args": { "to": "down", "by": "line", "value": 10 },
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "alt+up",
+    "command": "cursorMove",
+    "args": { "to": "up", "by": "line", "value": 10 },
+    "when": "editorTextFocus",
+  },
+  // SELECT AND SCROLL 13 LINES
+  {
+    "key": "shift+alt+down",
+    "command": "cursorMove",
+    "args": { "to": "down", "by": "line", "value": 10, "select": true },
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "cursorMove",
+    "args": { "to": "up", "by": "line", "value": 10, "select": true },
+    "when": "editorTextFocus",
+  },
+
+  // FILE TREE
+  {
+    "command": "workbench.action.toggleSidebarVisibility",
+    "key": "cmd+e",
+  },
+  {
+    "command": "workbench.files.action.focusFilesExplorer",
+    "key": "cmd+e",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "alt+n",
+    "command": "explorer.newFile",
+    "when": "explorerViewletFocus",
+  },
+  {
+    "key": "shift+alt+n",
+    "command": "explorer.newFolder",
+    "when": "explorerViewletFocus",
+  },
+  {
+    "command": "deleteFile",
+    "key": "alt+d",
+    "when": "filesExplorerFocus && !inputFocus",
+  },
+  // FORMAT DOCUMENT
+  {
+    "key": "alt+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor",
+  },
+  {
+    "key": "shift+alt+f",
+    "command": "-editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor",
+  },
+  // DELETE LINE
+  {
+    "key": "shift+cmd+d",
+    "command": "editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly",
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "-editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly",
+  },
+  // RELOAD WINDOW
+  {
+    "key": "shift+cmd+r",
+    "command": "workbench.action.reloadWindow",
+  },
+  // JUMP TO BRACKET
+  {
+    "key": "alt+[Period]",
+    "command": "editor.action.jumpToBracket",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "alt+c",
+    "command": "editor.action.jumpToBracket",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+alt+cmd+[IntlRo]",
+    "command": "-editor.action.jumpToBracket",
+    "when": "editorTextFocus",
+  },
+  // SELECT TO BRACKET
+  {
+    "key": "shift+alt+c",
+    "command": "editor.action.selectToBracket",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "shift+alt+[Period]",
+    "command": "editor.action.selectToBracket",
+    "when": "editorTextFocus",
+  },
+  // EMMET: MATCH TAG
+  {
+    "key": "alt+x",
+    "command": "editor.emmet.action.matchTag",
+  },
+  {
+    "key": "alt+[Comma]",
+    "command": "editor.emmet.action.matchTag",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "alt+-", // This does not work but it prevents the addition of empty charecters that cause errors
+    "command": "editor.emmet.action.matchTag",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "alt+y",
+    "command": "markdown.extension.checkTaskList",
+    "when": "false",
+  },
+  {
+    "key": "alt+c",
+    "command": "-markdown.extension.checkTaskList",
+    "when": "false",
+  },
+  // EXPAND SELECTION
+  {
+    "key": "shift+alt+-",
+    "command": "editor.action.smartSelect.grow",
+    "when": "editorTextFocus",
+  },
+  // COPY LINE UP/DOWN (REMOVED DEFAULT KEYBINDING)
+  {
+    "key": "shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly",
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "-editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly",
+  },
+  // MOVE LINE UP/DOWN (NEW KEYBINDING)
+  {
+    "key": "alt+up",
+    "command": "-editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly",
+  },
+  {
+    "key": "alt+down",
+    "command": "-editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly",
+  },
+  {
+    "key": "ctrl+alt+up",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly",
+  },
+  {
+    "key": "ctrl+alt+down",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly",
+  },
+  {
+    "key": "alt+-",
+    "command": "-decreaseSearchEditorContextLines",
+    "when": "inSearchEditor",
+  },
+  {
+    "key": "shift+cmd+i",
+    "command": "workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active",
+  },
+  {
+    "key": "ctrl+cmd+i",
+    "command": "-workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active",
+  },
+  {
+    "key": "shift+cmd+j",
+    "command": "-workbench.action.search.toggleQueryDetails",
+    "when": "inSearchEditor || searchViewletFocus",
+  },
+  {
+    "key": "shift+cmd+j",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active",
+  },
+  {
+    "key": "shift+cmd+g",
+    "command": "workbench.view.scm",
+    "when": "workbench.scm.active",
+  },
+  {
+    "key": "ctrl+shift+g",
+    "command": "-workbench.view.scm",
+    "when": "workbench.scm.active",
+  },
+]
