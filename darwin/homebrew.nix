@@ -23,7 +23,7 @@
       "tailscale-app"
       "twingate"
       "rectangle"
-      # "visual-studio-code"
+      "visual-studio-code"
     ]; # GUI Apps
     # brews = [
     # ]; # CLI Tools

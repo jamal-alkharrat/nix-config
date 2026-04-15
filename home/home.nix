@@ -44,6 +44,12 @@ in
       ../dotfiles/vscode/keybindings.json;
     "/Users/${username}/Library/Application Support/Code/User/mcp.json".source =
       ../dotfiles/vscode/mcp.json;
+    "/Users/${username}/Library/Application Support/Code/User/prompts".source =
+      ../dotfiles/vscode/prompts;
+    "/Users/${username}/Library/Application Support/Code/User/prompts".recursive = true;
+    "/Users/${username}/Library/Application Support/Code/User/snippets".source =
+      ../dotfiles/vscode/snippets;
+    "/Users/${username}/Library/Application Support/Code/User/snippets".recursive = true;
   };
 
   # Let Home Manager install and manage itself.
@@ -154,7 +160,4 @@ in
     };
   };
 
-  programs.vscode = {
-    enable = true;
-  };
 }
