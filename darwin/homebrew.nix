@@ -24,6 +24,7 @@
       "twingate"
       "rectangle"
       "visual-studio-code"
+      "docker-desktop"
     ]; # GUI Apps
     # brews = [
     # ]; # CLI Tools

@@ -68,6 +68,11 @@ in
 
   programs.lazygit = {
     enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.lazydocker = {
+    enable = true;
   };
 
   programs.fd = {
@@ -137,6 +142,11 @@ in
   programs.ghostty = {
     enable = true;
     package = null;
+    enableZshIntegration = true;
+    settings = {
+      font-family = "JetBrainsMono Nerd Font Mono";
+      background-opacity = 0.9;
+    };
   };
 
   programs.mcp = {
