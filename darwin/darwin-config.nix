@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  username = "jamalalkharrat";
+  username = (import ../common/username.nix).username;
 in
 {
   imports = [

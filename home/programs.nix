@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let username = "jamalalkharrat"; in
+let username = (import ../common/username.nix).username; in
 {
   # Git configuration
   programs.git = {
