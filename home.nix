@@ -34,6 +34,8 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+
+    ".config/karabiner/karabiner.json".source = ./dotfiles/.config/karabiner/karabiner.json;
   };
 
   # Let Home Manager install and manage itself.
@@ -83,8 +85,8 @@ programs.fd = {
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initContent = ''
-      bindkey 'ˆI' autosuggest-accept
-      bindkey -M viins 'ˆI' autosuggest-accept
+      bindkey '^I' autosuggest-accept
+      bindkey -M viins '^I' autosuggest-accept
       '';
   };
 
@@ -119,5 +121,29 @@ programs.fd = {
   programs.ghostty = {
     enable = true;
     package = null;
+  };
+
+  programs.mcp = {
+    enable = true;
+    servers = {
+      MCP_DOCKER = {
+      type = "local";
+      command = "docker";
+      args = [
+        "mcp",
+        "gateway",
+        "run"
+      ];
+      enabled = true;
+    }
+    };
+  };
+
+  programs.opencode = {
+    enable = true;
+    enableMcpIntegration = true;
+    settings = {
+      "editor.fontFamily" = "Fira Code Nerd Font";
+    };
   };
 }
