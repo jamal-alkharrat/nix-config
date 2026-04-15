@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
-let username = "jamalalkharrat";
-in 
+let
+  username = "jamalalkharrat";
+in
 {
   home.username = username;
   home.homeDirectory = "/Users/${username}";
@@ -35,9 +36,14 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
 
-    ".config/karabiner/karabiner.json".source = ./dotfiles/karabiner/karabiner.json;
-    "/Users/${username}/Library/Application Support/Code/User/settings.json".source = ./dotfiles/vscode/settings.json;
-    "/Users/${username}/Library/Application Support/Code/User/keybindings.json".source = ./dotfiles/vscode/keybindings.json;
+    ".config/karabiner/karabiner.json".source = ../dotfiles/karabiner/karabiner.json;
+    # VSCode settings and keybindings files in MacOS. in Linux use the path "~/.config/Code/User/" instead
+    "/Users/${username}/Library/Application Support/Code/User/settings.json".source =
+      ../dotfiles/vscode/settings.json;
+    "/Users/${username}/Library/Application Support/Code/User/keybindings.json".source =
+      ../dotfiles/vscode/keybindings.json;
+    "/Users/${username}/Library/Application Support/Code/User/mcp.json".source =
+      ../dotfiles/vscode/mcp.json;
   };
 
   # Let Home Manager install and manage itself.
@@ -146,5 +152,9 @@ in
     enableMcpIntegration = true;
     settings = {
     };
+  };
+
+  programs.vscode = {
+    enable = true;
   };
 }
