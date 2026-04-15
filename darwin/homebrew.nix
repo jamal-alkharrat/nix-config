@@ -27,8 +27,10 @@
     ]; # GUI Apps
     # brews = [
     # ]; # CLI Tools
-    #taps = [
-    #];
+    taps = [
+      "typewhisper/tap"
+    ];
+
     user = "jamalalkharrat";
   };
 }
