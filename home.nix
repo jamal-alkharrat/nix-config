@@ -14,7 +14,6 @@
     wget
     vim
     htop
-    opencode
     nixfmt # Nix formatter
   ];
 
@@ -43,39 +42,39 @@
 
   # Git configuration
   programs.git = {
-  enable = true;
-  settings = {
-    user.name = "Jamal Alkharrat";
-    user.email = "jamal.alkharrat@gmail.com";
-   };
+    enable = true;
+    settings = {
+      user.name = "Jamal Alkharrat";
+      user.email = "jamal.alkharrat@gmail.com";
+    };
   };
 
-programs.lazygit = {
+  programs.lazygit = {
     enable = true;
   };
 
-programs.fd = {
-  enable = true;
-  ignores = [
-    "Library/"
-    "Pictures/"
-    "Downloads/"
-    ".git/"
-    "node_modules/"
-    "venv/"
-    "__pycache__/"
-    ".cache/"
-    "build/"
-    "dist/"
-    ".DS_Store"
-    "*.log"
-    "*.pyc"
-  ];
-};
+  programs.fd = {
+    enable = true;
+    ignores = [
+      "Library/"
+      "Pictures/"
+      "Downloads/"
+      ".git/"
+      "node_modules/"
+      "venv/"
+      "__pycache__/"
+      ".cache/"
+      "build/"
+      "dist/"
+      ".DS_Store"
+      "*.log"
+      "*.pyc"
+    ];
+  };
 
   programs.fzf = {
     enable = true;
-    enableZshIntegration = true;   # or enableBashIntegration = true;
+    enableZshIntegration = true; # or enableBashIntegration = true;
   };
 
   # Zsh configuration
@@ -87,7 +86,7 @@ programs.fd = {
     initContent = ''
       bindkey '^I' autosuggest-accept
       bindkey -M viins '^I' autosuggest-accept
-      '';
+    '';
   };
 
   # Starship prompt
@@ -105,7 +104,7 @@ programs.fd = {
   };
 
   # Let Home Manager manage itself
-  targets.darwin.defaults = {};
+  targets.darwin.defaults = { };
 
   programs.nh = {
     enable = true;
@@ -127,15 +126,15 @@ programs.fd = {
     enable = true;
     servers = {
       MCP_DOCKER = {
-      type = "local";
-      command = "docker";
-      args = [
-        "mcp",
-        "gateway",
-        "run"
-      ];
-      enabled = true;
-    }
+        type = "local";
+        command = "docker";
+        args = [
+          "mcp"
+          "gateway"
+          "run"
+        ];
+        enabled = true;
+      };
     };
   };
 
@@ -143,7 +142,6 @@ programs.fd = {
     enable = true;
     enableMcpIntegration = true;
     settings = {
-      "editor.fontFamily" = "Fira Code Nerd Font";
     };
   };
 }
