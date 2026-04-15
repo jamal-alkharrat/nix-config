@@ -1,3 +1,5 @@
+{ config, pkgs, ... }:
+let username = "jamalalkharrat"; in
 {
   # Git configuration
   programs.git = {
