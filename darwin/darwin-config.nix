@@ -55,6 +55,6 @@ in
   home-manager.users.${username} =
     { pkgs, ... }:
     {
-      imports = [ ../home.nix ];
+      imports = [ ../home/home.nix ];
     };
 }
