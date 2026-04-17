@@ -26,8 +26,9 @@
       "visual-studio-code"
       "docker-desktop"
     ]; # GUI Apps
-    # brews = [
-    # ]; # CLI Tools
+    brews = [
+      "typst"
+    ]; # CLI Tools
     taps = [
       "typewhisper/tap"
     ];
