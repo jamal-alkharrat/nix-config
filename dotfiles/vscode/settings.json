@@ -167,4 +167,7 @@
     "editor.defaultFormatter": "jnoortheen.nix-ide",
   },
   "nix.formatterPath": "nixfmt",
+  "[typst]": {
+    "editor.defaultFormatter": "myriad-dreamin.tinymist"
+  },
 }
