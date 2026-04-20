@@ -7,6 +7,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
@@ -15,6 +16,7 @@
       nix-darwin,
       nixpkgs,
       home-manager,
+      sops-nix,
       ...
     }:
     {
@@ -25,6 +27,7 @@
         modules = [
           ./darwin/darwin-config.nix
           inputs.home-manager.darwinModules.home-manager
+          sops-nix.darwinModules.sops
         ];
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
       };
