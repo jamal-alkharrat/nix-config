@@ -19,6 +19,11 @@ in
   environment.systemPackages = with pkgs; [
     home-manager
   ];
+
+  # Environment variables to be set for all users. To set them for a single user, use home-manager.
+  environment.variables = {
+    # Example: "GPG_TTY" = "${pkgs.lib.getEnv "TTY"}";
+  };
   
 
   nixpkgs.config = {
