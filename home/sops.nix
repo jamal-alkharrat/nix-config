@@ -6,7 +6,9 @@ in
   sops.defaultSopsFile = ../secrets/secrets.yaml;
   sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
 
-  sops.secrets.fints_password = {};
+  sops.secrets.fints_password = {
+    key = "FINTS_PASSWORD";
+  };
 
   home.sessionVariables = {
     FINTS_PASSWORD = "$(cat ${config.sops.secrets.fints_password.path})";

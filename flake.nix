@@ -27,6 +27,10 @@
         modules = [
           ./darwin/darwin-config.nix
           inputs.home-manager.darwinModules.home-manager
+          {
+            # Expose sops options inside Home Manager modules.
+            home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
+          }
           sops-nix.darwinModules.sops
         ];
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
