@@ -49,10 +49,11 @@ let username = (import ../common/username.nix).username; in
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    initContent = ''
-      bindkey '^I' autosuggest-accept
-      bindkey -M viins '^I' autosuggest-accept
-    '';
+    # Tab for accepting autosuggestions.
+    # initContent = ''
+    #   bindkey '^I' autosuggest-accept
+    #   bindkey -M viins '^I' autosuggest-accept
+    # '';
   };
 
   # Starship prompt
