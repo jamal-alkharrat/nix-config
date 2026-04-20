@@ -29,5 +29,7 @@ in
     ./mcp.nix
     ./home-file.nix
     ./programs.nix
+    # ./env.nix # Environment variables for the user, ignored because it contains secrets. Please create this file and add your environment variables there.
+    ./env.nix
   ];
 }
