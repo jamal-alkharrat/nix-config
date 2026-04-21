@@ -23,6 +23,10 @@ Add to your `flake.nix`:
         darwinConfigurations = {
             # other configurations
             modules = [
+                {
+                    # Expose sops options inside Home Manager modules.
+                    home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
+                }
                 # other modules
                 sops-nix.darwinModules.sops
             ];
