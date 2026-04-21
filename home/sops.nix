@@ -11,6 +11,7 @@ in
   };
 
   home.sessionVariables = {
+    SOPS_AGE_KEY_FILE = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
     FINTS_PASSWORD = "$(cat ${config.sops.secrets.fints_password.path})";
   };
 }
