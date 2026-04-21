@@ -157,6 +157,11 @@ sops updatekeys secrets/secrets.yaml
   sops.secrets.api_key = {};
 
   home.sessionVariables = {
+    # Set the path to your age key file so you can use sops in the terminal without issues.
+    SOPS_AGE_KEY_FILE = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+    # Load secrets into environment variables 
+    # The secret.path is the path to the secret in the encrypted file, e.g. secrets.yaml
+    # The value will be loaded into the environment variable API_KEY
     API_KEY = "$(cat ${config.sops.secrets.api_key.path})";
   };
 }
