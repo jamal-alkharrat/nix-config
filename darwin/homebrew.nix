@@ -25,6 +25,7 @@
       "rectangle"
       "visual-studio-code"
       "docker-desktop"
+      "steam"
     ]; # GUI Apps
     brews = [
       "typst"

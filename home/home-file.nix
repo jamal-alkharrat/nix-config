@@ -19,19 +19,19 @@ let username = (import ../common/username.nix).username; in
 
     ".config/karabiner/karabiner.json".source = ../dotfiles/karabiner/karabiner.json;
     # VSCode settings and keybindings files in MacOS. in Linux use the path "~/.config/Code/User/" instead
-    "/Users/${username}/Library/Application Support/Code/User/settings.json".source =
-      ../dotfiles/vscode/settings.json;
-    "/Users/${username}/Library/Application Support/Code/User/keybindings.json".source =
-      ../dotfiles/vscode/keybindings.json;
-    "/Users/${username}/Library/Application Support/Code/User/mcp.json".source =
-      ../dotfiles/vscode/mcp.json;
-    "/Users/${username}/Library/Application Support/Code/User/prompts" = {
-      source = ../dotfiles/vscode/prompts;
-      recursive = true;
-    };
-    "/Users/${username}/Library/Application Support/Code/User/snippets" = {
-      source = ../dotfiles/vscode/snippets;
-      recursive = true;
-    };
+    # "/Users/${username}/Library/Application Support/Code/User/settings.json".source =
+    #   ../dotfiles/vscode/settings.json;
+    # "/Users/${username}/Library/Application Support/Code/User/keybindings.json".source =
+    #   ../dotfiles/vscode/keybindings.json;
+    # "/Users/${username}/Library/Application Support/Code/User/mcp.json".source =
+    #   ../dotfiles/vscode/mcp.json;
+    # "/Users/${username}/Library/Application Support/Code/User/prompts" = {
+    #   source = ../dotfiles/vscode/prompts;
+    #   recursive = true;
+    # };
+    # "/Users/${username}/Library/Application Support/Code/User/snippets" = {
+    #   source = ../dotfiles/vscode/snippets;
+    #   recursive = true;
+    # };
   };
 }
