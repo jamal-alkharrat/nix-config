@@ -31,11 +31,11 @@ These commands match the [official NixOS manual](https://nixos.org/manual/nixos/
 # Wipe + GPT
 parted /dev/sda -- mklabel gpt
 
-# Root partition (ext4, uses most of the disk, leave ~8GB for swap)
-parted /dev/sda -- mkpart root ext4 512MB -8GB
+# Root partition (ext4, uses most of the disk, leave ~4GB for swap)
+parted /dev/sda -- mkpart root ext4 512MB -4GB
 
-# Swap partition
-parted /dev/sda -- mkpart swap linux-swap -8GB 100%
+# Swap partition (4GB — enough for 10GB RAM VM, no hibernation)
+parted /dev/sda -- mkpart swap linux-swap -4GB 100%
 
 # EFI boot partition
 parted /dev/sda -- mkpart ESP fat32 1MB 512MB
