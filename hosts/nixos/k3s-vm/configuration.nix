@@ -7,9 +7,9 @@
 
   # Hostname
   networking.hostName = "k3s-vm";
-  networking.networkmanager.enable = true;
+  networking.useDHCP = true;
 
-  # SSH
+  # SSH — enabled so we can manage it remotely
   services.openssh = {
     enable = true;
     settings = {
@@ -21,37 +21,25 @@
   # User
   users.users.jamal = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = [
-      # Add your SSH public key(s) here
-      # "ssh-ed25519 AAAAC3..."
+      # FIXME: Add your SSH public key(s) here
+      # Example: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAA..."
     ];
   };
 
-  # Sudo
+  # Allow passwordless sudo for wheel
   security.sudo.wheelNeedsPassword = false;
 
-  # K3s
-  services.k3s = {
-    enable = true;
-    role = "server";
-  };
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Packages
   environment.systemPackages = with pkgs; [
     vim
     git
     curl
-    wget
-    htop
-    jq
   ];
-
-  # Nix settings
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
-  };
 
   system.stateVersion = "26.05";
 }

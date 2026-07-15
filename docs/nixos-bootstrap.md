@@ -1,67 +1,80 @@
 # NixOS Bootstrap Guide — VM 153 (k3s-vm)
 
-## Overview
+This is the **one-time** manual install. After this, all changes happen declaratively via the flake.
 
-This guide walks through installing NixOS on VM 153 from scratch.
-After this, all changes happen declaratively via the flake in this repo.
+## Before you start
 
-## Prerequisites
-
-- VM 153 already exists on Proxmox (2c/4GB/20GB)
-- NixOS minimal ISO attached as CD-ROM
-- You have access to Proxmox console (no SSH yet — first boot only)
-
-## Step 1: Boot the Installer
-
-1. Open Proxmox → VM 153 → **Console**
-2. Start VM 153
-3. The NixOS installer boots automatically
-4. Once at the shell prompt (`nixos`), configure networking:
+You need your **SSH public key** ready. If you don't have one:
 
 ```bash
-# Get a DHCP lease
-dhcpcd
-
-# Test internet
-ping -c 3 nixos.org
+# On your Mac
+cat ~/.ssh/id_ed25519.pub
+# If that file doesn't exist: ssh-keygen -t ed25519
 ```
 
-## Step 2: Partition Disk
+## Step 1: Boot the ISO
+
+1. Proxmox → VM 153 → **Console**
+2. Start VM
+3. At the `nixos>` prompt, get networking:
 
 ```bash
-# Wipe and partition (EFI + root)
-parted /dev/sda -- mklabel gpt
-parted /dev/sda -- mkpart primary 512MiB -8GiB
-parted /dev/sda -- mkpart primary linux-swap -8GiB 100%
-parted /dev/sda -- mkpart ESP fat32 1MiB 512MiB
-parted /dev/sda -- set 3 esp on
+dhcpcd
+ping -c 3 nixos.org  # verify internet
+```
 
-# Format
+## Step 2: Partition Disk (UEFI)
+
+These commands match the [official NixOS manual](https://nixos.org/manual/nixos/stable/#sec-installation-manual-partitioning-UEFI).
+
+```bash
+# Wipe + GPT
+parted /dev/sda -- mklabel gpt
+
+# Root partition (ext4, uses most of the disk, leave ~8GB for swap)
+parted /dev/sda -- mkpart root ext4 512MB -8GB
+
+# Swap partition
+parted /dev/sda -- mkpart swap linux-swap -8GB 100%
+
+# EFI boot partition
+parted /dev/sda -- mkpart ESP fat32 1MB 512MB
+parted /dev/sda -- set 3 esp on
+```
+
+## Step 3: Format & Mount
+
+```bash
 mkfs.ext4 -L nixos /dev/sda1
 mkswap -L swap /dev/sda2
 mkfs.fat -F 32 -n boot /dev/sda3
 
-# Mount
 mount /dev/disk/by-label/nixos /mnt
 mkdir -p /mnt/boot
 mount /dev/disk/by-label/boot /mnt/boot
 swapon /dev/sda2
 ```
 
-## Step 3: Generate Config & Install
+## Step 4: Generate Hardware Config
 
 ```bash
-# Generate hardware config
 nixos-generate-config --root /mnt
-
-# View the generated hardware-configuration.nix
-cat /mnt/etc/nixos/hardware-configuration.nix
-# **COPY THIS OUTPUT** — you'll need it for the repo
 ```
 
-Create a minimal `/mnt/etc/nixos/configuration.nix`:
+Now **copy this output** — we'll store it in the repo:
 
-```nix
+```bash
+cat /mnt/etc/nixos/hardware-configuration.nix
+```
+
+Save it somewhere (it's auto-detected UUIDs/device paths specific to this VM).
+
+## Step 5: Minimal config for first boot
+
+Create `/mnt/etc/nixos/configuration.nix`:
+
+```bash
+cat > /mnt/etc/nixos/configuration.nix << 'EOF'
 { config, pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
@@ -69,21 +82,23 @@ Create a minimal `/mnt/etc/nixos/configuration.nix`:
   networking.hostName = "k3s-vm";
   networking.useDHCP = true;
 
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = false;
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "prohibit-password";
+    };
+  };
 
   users.users.root.openssh.authorizedKeys.keys = [
-    # YOUR SSH PUBLIC KEY
-    "ssh-ed25519 AAAAC3..."
+    "ssh-ed25519 AAAAC3...YOUR_PUBLIC_KEY_HERE"
   ];
 
   users.users.jamal = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = [
-      # YOUR SSH PUBLIC KEY
-      "ssh-ed25519 AAAAC3..."
+      "ssh-ed25519 AAAAC3...YOUR_PUBLIC_KEY_HERE"
     ];
   };
   security.sudo.wheelNeedsPassword = false;
@@ -91,49 +106,35 @@ Create a minimal `/mnt/etc/nixos/configuration.nix`:
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "26.05";
 }
+EOF
 ```
 
-Then install:
+Replace `YOUR_PUBLIC_KEY_HERE` with your actual SSH public key.
+
+## Step 6: Install
 
 ```bash
 nixos-install
-# Set root password when prompted (temporary — will use SSH keys)
+# Set root password when prompted (temporary fallback)
 reboot
 ```
 
-## Step 4: Replace Repo Config with Real Hardware Config
-
-After reboot, SSH in:
+## Step 7: Verify SSH works, then I take over
 
 ```bash
+# From your Mac or any machine
 ssh root@192.168.0.153
-# Copy the real hardware config
-cat /etc/nixos/hardware-configuration.nix
 ```
 
-Copy that output into the repo at `hosts/nixos/k3s-vm/hardware-configuration.nix`
-(replace the placeholder).
+Once you're in, tell me and I will:
 
-## Step 5: Apply Flake Config
+1. Copy the real `hardware-configuration.nix` into the repo
+2. Push the flake config
+3. Run `nixos-rebuild switch --flake .#k3s-vm --target-host root@192.168.0.153`
+4. Add K3s and everything else via the config
 
-On any machine with the repo cloned:
+From then on: edit config → push → rebuild. Done.
 
-```bash
-nixos-rebuild switch --flake .#k3s-vm --target-host root@192.168.0.153
-```
+## Why these steps?
 
-That's it. From now on:
-
-1. Edit configs in `hosts/nixos/k3s-vm/`
-2. Push to GitHub
-3. Run the nixos-rebuild command above
-4. Changes applied, reproducible, version-controlled
-
-## Adding Future VMs
-
-```bash
-mkdir -p hosts/nixos/<vm-name>/
-# Create configuration.nix + copy hardware-configuration.nix
-# Add entry to flake.nix under nixosConfigurations
-nixos-rebuild switch --flake .#<vm-name> --target-host root@192.168.0.X
-```
+They're the **standard NixOS manual install** from the official docs. The minimal ISO has no installer wizard — you partition, format, generate config, install. No shortcuts here, but it's one-time only. The flake takes over after this.
