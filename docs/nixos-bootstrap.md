@@ -91,14 +91,16 @@ cat > /mnt/etc/nixos/configuration.nix << 'EOF'
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3...YOUR_PUBLIC_KEY_HERE"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPuIMVq34a92QCeVyBpwUfwEkVm2cKH7CldGfN8M8db5 jamalalkharrat@mac.local"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiLm8N8B7vY+koFGJR0V1Ca0T13pCM7ysxYK2NMtYtQ jamal@ubuntu"
   ];
 
   users.users.jamal = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3...YOUR_PUBLIC_KEY_HERE"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPuIMVq34a92QCeVyBpwUfwEkVm2cKH7CldGfN8M8db5 jamalalkharrat@mac.local"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiLm8N8B7vY+koFGJR0V1Ca0T13pCM7ysxYK2NMtYtQ jamal@ubuntu"
     ];
   };
   security.sudo.wheelNeedsPassword = false;
