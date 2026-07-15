@@ -71,47 +71,14 @@ Save it somewhere (it's auto-detected UUIDs/device paths specific to this VM).
 
 ## Step 5: Minimal config for first boot
 
-Create `/mnt/etc/nixos/configuration.nix`:
+The repo already has a config at `hosts/nixos/k3s-vm/configuration.nix` with your SSH keys.
+Copy it over:
 
 ```bash
-cat > /mnt/etc/nixos/configuration.nix << 'EOF'
-{ config, pkgs, ... }:
-{
-  imports = [ ./hardware-configuration.nix ];
-
-  networking.hostName = "k3s-vm";
-  networking.useDHCP = true;
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "prohibit-password";
-    };
-  };
-
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPuIMVq34a92QCeVyBpwUfwEkVm2cKH7CldGfN8M8db5 jamalalkharrat@mac.local"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiLm8N8B7vY+koFGJR0V1Ca0T13pCM7ysxYK2NMtYtQ jamal@ubuntu"
-  ];
-
-  users.users.jamal = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPuIMVq34a92QCeVyBpwUfwEkVm2cKH7CldGfN8M8db5 jamalalkharrat@mac.local"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiLm8N8B7vY+koFGJR0V1Ca0T13pCM7ysxYK2NMtYtQ jamal@ubuntu"
-    ];
-  };
-  security.sudo.wheelNeedsPassword = false;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  system.stateVersion = "26.05";
-}
-EOF
+# Download the config from the repo
+curl -o /mnt/etc/nixos/configuration.nix \
+  https://raw.githubusercontent.com/jamal-alkharrat/nix-config/main/hosts/nixos/k3s-vm/configuration.nix
 ```
-
-Replace `YOUR_PUBLIC_KEY_HERE` with your actual SSH public key.
 
 ## Step 6: Install
 
@@ -121,22 +88,12 @@ nixos-install
 reboot
 ```
 
-## Step 7: Verify SSH works, then I take over
+## Step 7: Done
 
-```bash
-# From your Mac or any machine
-ssh root@192.168.0.153
-```
+SSH in: `ssh root@192.168.0.153`
 
-Once you're in, tell me and I will:
+From then on: edit config in repo → push → run `nixos-rebuild switch --flake .#k3s-vm --target-host root@192.168.0.153`
 
-1. Copy the real `hardware-configuration.nix` into the repo
-2. Push the flake config
-3. Run `nixos-rebuild switch --flake .#k3s-vm --target-host root@192.168.0.153`
-4. Add K3s and everything else via the config
+---
 
-From then on: edit config → push → rebuild. Done.
-
-## Why these steps?
-
-They're the **standard NixOS manual install** from the official docs. The minimal ISO has no installer wizard — you partition, format, generate config, install. No shortcuts here, but it's one-time only. The flake takes over after this.
+> **Note:** This guide is for reference. I'll do the install myself via Proxmox serial console.
