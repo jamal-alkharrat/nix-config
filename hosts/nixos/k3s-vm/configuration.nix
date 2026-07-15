@@ -7,7 +7,8 @@
 
   # Hostname
   networking.hostName = "k3s-vm";
-  networking.useDHCP = true;
+  # Enable DHCP (needs mkForce for Proxmox image builder compatibility)
+  networking.useDHCP = lib.mkForce true;
 
   # SSH — enabled so we can manage it remotely
   services.openssh = {
