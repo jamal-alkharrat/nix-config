@@ -63,21 +63,19 @@
       };
 
       # ── VM Images ──────────────────────────────────────────────
-      # Build a disk image ready to import into Proxmox.
+      # Build a qcow2 disk image ready to import into Proxmox.
       #
-      #   nix build .#packages.x86_64-linux.k3s-vm-proxmox
-      packages.x86_64-linux.k3s-vm-proxmox =
+      #   nix build .#packages.x86_64-linux.k3s-vm-qcow2
+      packages.x86_64-linux.k3s-vm-qcow2 =
         let
           image = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
               "${nixpkgs}/nixos/modules/image/images.nix"
               ./hosts/nixos/k3s-vm
-              # Override image defaults that conflict with our config
-              ({ lib, ... }: { networking.useDHCP = lib.mkForce true; })
             ];
           };
         in
-          image.config.system.build.images.proxmox;
+          image.config.system.build.images.qemu-efi;
     };
 }
