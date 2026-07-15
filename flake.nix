@@ -1,5 +1,5 @@
 {
-  description = "MacOS configuration using nix-darwin and home-manager";
+  description = "System configuration using Nix flakes";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
@@ -19,21 +19,50 @@
       sops-nix,
       ...
     }:
+    let
+      # Systems we target
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
+    in
     {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#mac
+      # ── Darwin (macOS) ──────────────────────────────────────────
+      # Build: darwin-rebuild build --flake .#mac
       darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
           ./darwin/darwin-config.nix
           inputs.home-manager.darwinModules.home-manager
           {
-            # Expose sops options inside Home Manager modules.
             home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
           }
           sops-nix.darwinModules.sops
         ];
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
       };
+
+      # ── NixOS ───────────────────────────────────────────────────
+      # Build: nixos-rebuild build --flake .#k3s-vm
+      # Deploy: nixos-rebuild switch --flake .#k3s-vm --target-host root@192.168.0.153
+      nixosConfigurations = {
+        "k3s-vm" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/nixos/k3s-vm
+          ];
+        };
+      };
+
+      # ── Dev shell ──────────────────────────────────────────────
+      devShells = forAllSystems (system: {
+        default = nixpkgs.legacyPackages.${system}.mkShell {
+          buildInputs = with nixpkgs.legacyPackages.${system}; [
+            nixos-generators
+            # For testing configs locally
+          ];
+        };
+      });
     };
 }
