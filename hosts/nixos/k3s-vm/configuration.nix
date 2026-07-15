@@ -7,8 +7,16 @@
 
   # Hostname
   networking.hostName = "k3s-vm";
-  # Enable DHCP (needs mkForce for Proxmox image builder compatibility)
+  # Enable DHCP
   networking.useDHCP = lib.mkForce true;
+
+  # Filesystem config for disk image compatibility
+  # The Proxmox image builder creates MBR with /dev/vda1 as root
+  fileSystems."/" = lib.mkForce {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+    autoFormat = true;
+  };
 
   # SSH — enabled so we can manage it remotely
   services.openssh = {
