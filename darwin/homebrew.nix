@@ -26,9 +26,11 @@
       "visual-studio-code"
       "docker-desktop"
       "steam"
+      "discord"
     ]; # GUI Apps
     brews = [
       "typst"
+      "just"
     ]; # CLI Tools
     taps = [
       "typewhisper/tap"
