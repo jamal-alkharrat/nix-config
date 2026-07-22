@@ -4,174 +4,111 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "App shortcuts (opt+N → open app, shift+opt+N → capture frontmost)",
+                        "description": "App shortcuts (opt+N → open, shift+opt+N → capture current app, shift+opt+esc → reset all)",
                         "manipulators": [
                             {
-                                "from": {
-                                    "key_code": "1",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 1" }],
+                                "from": { "key_code": "1", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/1 2>/dev/null); open -a \"${A:-Safari}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "2",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 2" }],
+                                "from": { "key_code": "2", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/2 2>/dev/null); open -a \"${A:-Visual Studio Code}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "3",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 3" }],
+                                "from": { "key_code": "3", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/3 2>/dev/null); open -a \"${A:-Ghostty}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "4",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 4" }],
+                                "from": { "key_code": "4", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/4 2>/dev/null); open -a \"${A:-Finder}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "5",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 5" }],
+                                "from": { "key_code": "5", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/5 2>/dev/null); open -a \"${A:-Spotify}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "6",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 6" }],
+                                "from": { "key_code": "6", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/6 2>/dev/null); open -a \"${A:-System Settings}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "7",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 7" }],
+                                "from": { "key_code": "7", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/7 2>/dev/null); open -a \"${A:-WhatsApp}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "8",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 8" }],
+                                "from": { "key_code": "8", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/8 2>/dev/null); open -a \"${A:-Passwords}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "9",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 9" }],
+                                "from": { "key_code": "9", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/9 2>/dev/null); open -a \"${A:-Obsidian}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "0",
-                                    "modifiers": { "mandatory": ["option"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 0" }],
+                                "from": { "key_code": "0", "modifiers": { "mandatory": ["option"] } },
+                                "to": [{ "shell_command": "A=$(cat ~/.cache/as/0 2>/dev/null); open -a \"${A:-Notion}\"" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "1",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 1 --capture" }],
+                                "from": { "key_code": "1", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/1" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "2",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 2 --capture" }],
+                                "from": { "key_code": "2", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/2" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "3",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 3 --capture" }],
+                                "from": { "key_code": "3", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/3" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "4",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 4 --capture" }],
+                                "from": { "key_code": "4", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/4" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "5",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 5 --capture" }],
+                                "from": { "key_code": "5", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/5" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "6",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 6 --capture" }],
+                                "from": { "key_code": "6", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/6" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "7",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 7 --capture" }],
+                                "from": { "key_code": "7", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/7" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "8",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 8 --capture" }],
+                                "from": { "key_code": "8", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/8" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "9",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 9 --capture" }],
+                                "from": { "key_code": "9", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/9" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "0",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh 0 --capture" }],
+                                "from": { "key_code": "0", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "mkdir -p ~/.cache/as && osascript -e 'tell app \"System Events\" to get name of first process whose frontmost is true' > ~/.cache/as/0" }],
                                 "type": "basic"
                             },
                             {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/bin/bash /Users/jamalalkharrat/nix-config/dotfiles/scripts/app-switcher.sh --reset" }],
+                                "from": { "key_code": "escape", "modifiers": { "mandatory": ["option", "shift"] } },
+                                "to": [{ "shell_command": "rm -f ~/.cache/as/*" }],
                                 "type": "basic"
                             }
                         ]
