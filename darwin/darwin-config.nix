@@ -43,13 +43,6 @@ in
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  # Trust third-party Homebrew taps (required since Homebrew 4.x).
-  system.activationScripts.preActivation.text = ''
-    if [ -f /opt/homebrew/bin/brew ]; then
-      sudo -u ${username} /opt/homebrew/bin/brew trust typewhisper/tap 2>/dev/null || true
-    fi
-  '';
-
   # Enable Touch ID support for sudo.
   security.pam.services.sudo_local.touchIdAuth = true;
 
