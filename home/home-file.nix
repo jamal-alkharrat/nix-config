@@ -17,7 +17,10 @@ let username = (import ../common/username.nix).username; in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
 
-    ".config/karabiner/karabiner.json".source = ../dotfiles/karabiner/karabiner.json;
+    ".config/karabiner/karabiner.json" = {
+      source = ../dotfiles/karabiner/karabiner.json;
+      force = true;
+    };
     # VSCode settings and keybindings files in MacOS. in Linux use the path "~/.config/Code/User/" instead
     # "/Users/${username}/Library/Application Support/Code/User/settings.json".source =
     #   ../dotfiles/vscode/settings.json;
