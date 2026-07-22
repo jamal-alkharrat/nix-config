@@ -4,14 +4,14 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "App shortcuts",
+                        "description": "App shortcuts (opt+N → open app, shift+opt+N → capture frontmost)",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "1",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Safari'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 1" }],
                                 "type": "basic"
                             },
                             {
@@ -19,7 +19,7 @@
                                     "key_code": "2",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Visual Studio Code'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 2" }],
                                 "type": "basic"
                             },
                             {
@@ -27,7 +27,7 @@
                                     "key_code": "3",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Ghostty'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 3" }],
                                 "type": "basic"
                             },
                             {
@@ -35,7 +35,7 @@
                                     "key_code": "4",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Finder'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 4" }],
                                 "type": "basic"
                             },
                             {
@@ -43,7 +43,7 @@
                                     "key_code": "5",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Spotify'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 5" }],
                                 "type": "basic"
                             },
                             {
@@ -51,7 +51,7 @@
                                     "key_code": "6",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'System Settings'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 6" }],
                                 "type": "basic"
                             },
                             {
@@ -59,7 +59,7 @@
                                     "key_code": "7",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'WhatsApp'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 7" }],
                                 "type": "basic"
                             },
                             {
@@ -67,7 +67,7 @@
                                     "key_code": "8",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Passwords'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 8" }],
                                 "type": "basic"
                             },
                             {
@@ -75,7 +75,7 @@
                                     "key_code": "9",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Obsidian'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 9" }],
                                 "type": "basic"
                             },
                             {
@@ -83,7 +83,95 @@
                                     "key_code": "0",
                                     "modifiers": { "mandatory": ["option"] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Notion'" }],
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 0" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "1",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 1 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "2",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 2 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 3 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "4",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 4 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "5",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 5 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "6",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 6 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "7",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 7 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "8",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 8 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 9 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh 0 --capture" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [{ "shell_command": "bash ~/nix-config/dotfiles/scripts/app-switcher.sh --reset" }],
                                 "type": "basic"
                             }
                         ]
